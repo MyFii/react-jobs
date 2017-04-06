@@ -41,6 +41,9 @@ export default function withJob(config) {
           getRehydrate: React.PropTypes.func.isRequired,
           removeRehydrate: React.PropTypes.func.isRequired,
         }),
+        store: React.PropTypes.shape({
+          runSaga: React.PropTypes.func.isRequired,
+        }).isRequired,
       };
 
       constructor(props, context) {
@@ -110,7 +113,7 @@ export default function withJob(config) {
         let workDefinition
 
         try {
-          workDefinition = work(props)
+          workDefinition = work(props)(this.context)
         } catch (error) {
           this.setState({ completed: true, error })
           // Ensures asyncBootstrap stops
