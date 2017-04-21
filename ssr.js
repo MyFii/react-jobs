@@ -1,1 +1,1 @@
-module.exports = require('./commonjs/ssr');
+module.exports = require('./commonjs/ssr')
